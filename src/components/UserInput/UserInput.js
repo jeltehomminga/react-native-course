@@ -8,7 +8,7 @@ const UserInput = props => {
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.placeInput}
-        placeholder="A newer place"
+        placeholder="A old place"
         value={props.placeName}
         onChangeText={value => handleTextChange(value)}
       />

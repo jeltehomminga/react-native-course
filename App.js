@@ -16,9 +16,21 @@ export default class App extends Component {
       return;
     }
     let newPlaces = this.state.places;
-    newPlaces.push(this.state.placeName);
+    newPlaces.push({
+      key: Math.random().toString(),
+      value: this.state.placeName
+    });
     this.setState({
       places: newPlaces
+    });
+  };
+  placeDeleteHandler = key => {
+    let filteredPlaces = this.state.places;
+    filteredPlaces.filter(place => {
+      return place.key !== key;
+    });
+    this.setState({
+      places: filteredPlaces
     });
   };
   render() {
@@ -30,7 +42,10 @@ export default class App extends Component {
           placeNameChangedHandler={this.placeNameChangedHandler}
           placeSubmitHandler={this.placeSubmitHandler}
         />
-        <List places={this.state.places} />
+        <List
+          places={this.state.places}
+          onItemDeleted={this.placeDeleteHandler}
+        />
       </View>
     );
   }
